@@ -380,23 +380,23 @@ int n=0;
             date.requestFocus();
             return;}
 
-        if(time1.isEmpty())  {
+       else if(time1.isEmpty())  {
             time.setError("Time is required");
             date.requestFocus();
             return;
-        } if(!date1.matches("\\d{2}-\\d{2}-\\d{4}")){
+        }else  if(!date1.matches("\\d{2}-\\d{2}-\\d{4}")){
             date.setError("Date should be in the following format DD-MM-YYYY");
             date.requestFocus();
             return;
-        } if(!time1.matches("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")){
+        }else if(!time1.matches("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")){
             time.setError("Time should be in the following format HH:MM");
             time.requestFocus();
             return;
-        } if(num>5){
+        }else if(num>5){
             SerNum.setError("number of people is required");
-            date.requestFocus();
+            SerNum.requestFocus();
             return;
-        }
+        } else{
 
         FirebaseDatabase database =  FirebaseDatabase.getInstance();
         FirebaseUser user =  mAuth.getCurrentUser();
@@ -413,7 +413,7 @@ int n=0;
         mRef.child("resNum").setValue(n+"");
         mRef.child("approved").setValue(false);
 
-        startActivity(new Intent(bookService.this,Booked.class));
+        startActivity(new Intent(bookService.this,Booked.class));}
 
     }
 

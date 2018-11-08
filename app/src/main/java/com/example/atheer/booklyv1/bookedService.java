@@ -307,7 +307,7 @@ public class bookedService extends AppCompatActivity implements View.OnClickList
 
 
 //
-                if(!org2.equals(null)){
+                if(org2!=null){
                   String o = org2.getResNum().trim() + "";
                     if(o.equals(resId)){
                         listdata.setText(org2.getOrg()+"");
@@ -477,22 +477,14 @@ public class bookedService extends AppCompatActivity implements View.OnClickList
         FirebaseUser user =  mAuth.getCurrentUser();
         String userId = user.getUid();
 
-        DatabaseReference mRef =  database.getReference().child("reservaiton").child(userId).child(resId);
+        DatabaseReference mRef =  database.getReference().child("reservaiton").child(userId);
 
-        mRef.child("date").setValue(null);
-        mRef.child("time").setValue(null);
-        mRef.child("service").setValue(null);
-        mRef.child("num").setValue(null);
-        mRef.child("org").setValue(null);
-        mRef.child("orgID").setValue(null);
-        mRef.child("resNum").setValue(null);
-        mRef.child("approved").setValue(null);
+        mRef.child(resId).removeValue();
 
-        startActivity(new Intent(bookedService.this,myServices.class));
+
 
 
     }
-
     private void updatebook() {
 
           date1= date.getText().toString().trim();;
