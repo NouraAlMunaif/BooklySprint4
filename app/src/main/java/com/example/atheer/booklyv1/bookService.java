@@ -208,31 +208,34 @@ int n=0;
 //                }
 //            });
 
-        final Calendar calander = Calendar.getInstance();
-        year = calander.get(Calendar.YEAR);
-        month = calander.get(Calendar.MONTH);
-        day = calander.get(Calendar.DAY_OF_MONTH);
-
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog dpd = new DatePickerDialog(bookService.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int day) {
-                                calander.set(year, month, day);
-                                String date1 = new SimpleDateFormat("dd-mm-yyyy").format(calander.getTime());
-                                date.setText(date1);
+                final Calendar c = Calendar.getInstance();
+                year = c.get(Calendar.YEAR);
+                month = c.get(Calendar.MONTH);
+                day = c.get(Calendar.DAY_OF_MONTH);
 
-                                year = calander.get(Calendar.YEAR);
-                                month = calander.get(Calendar.MONTH);
-                                day = calander.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog cc = new DatePickerDialog(bookService.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+
+                                date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
                             }
                         }, year, month, day);
-                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-                dpd.show();
+                cc.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
+
+                cc.show();
             }
         });
+
+
 
 //            date.setOnClickListener(new View.OnClickListener(){
 //
@@ -403,7 +406,8 @@ int n=0;
         String userId = user.getUid();
         Random rand = new Random();
         int  n = rand.nextInt(2000) + 1;
-        DatabaseReference mRef =  database.getReference().child("reservaiton").child(userId).child(n+"");
+        DatabaseReference mRef =  database.getReference().child("reservaiton").child(n+"");
+        mRef.child("clientID").setValue(userId);
         mRef.child("date").setValue(date1);
         mRef.child("time").setValue(time1);
         mRef.child("service").setValue(service1);

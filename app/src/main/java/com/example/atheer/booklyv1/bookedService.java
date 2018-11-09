@@ -200,21 +200,27 @@ public class bookedService extends AppCompatActivity implements View.OnClickList
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog dpd = new DatePickerDialog(bookedService.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int day) {
-                                calander.set(year, month, day);
-                                String date1 = new SimpleDateFormat("dd-mm-yyyy").format(calander.getTime());
-                                date.setText(date1);
+                final Calendar c = Calendar.getInstance();
+                year = c.get(Calendar.YEAR);
+                month = c.get(Calendar.MONTH);
+                day = c.get(Calendar.DAY_OF_MONTH);
 
-                                year = calander.get(Calendar.YEAR);
-                                month = calander.get(Calendar.MONTH);
-                                day = calander.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog cc = new DatePickerDialog(bookedService.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+
+                                date.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
                             }
                         }, year, month, day);
-                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-                dpd.show();
+                cc.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
+
+                cc.show();
             }
         });
 

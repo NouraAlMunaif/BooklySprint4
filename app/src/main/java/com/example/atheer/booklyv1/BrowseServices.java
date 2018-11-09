@@ -133,7 +133,7 @@ public class BrowseServices extends AppCompatActivity {
                     }
                 });
 
-        EditText search = (EditText) findViewById(R.id.search) ;
+      //  EditText search = (EditText) findViewById(R.id.search) ;
 
 
 
