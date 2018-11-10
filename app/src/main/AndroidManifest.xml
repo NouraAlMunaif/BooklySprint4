@@ -60,6 +60,7 @@
         <activity android:name=".OffersImages" />
         <activity android:name=".DeleteOrg" />
         <activity android:name=".bookedService" />
+        <activity android:name=".ApproveResrvation" />
         <!-- <activity android:name=".orgdes" /> -->
 
 

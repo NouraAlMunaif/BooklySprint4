@@ -48,6 +48,7 @@ public class mynav extends AppCompatActivity implements View.OnClickListener  {
 
         findViewById(R.id.serviceO).setOnClickListener(this);
         findViewById(R.id.offer).setOnClickListener(this);
+        findViewById(R.id.ReservationsId).setOnClickListener(this);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.bringToFront();
         headerView = navigationView.getHeaderView(0);
@@ -128,6 +129,9 @@ public class mynav extends AppCompatActivity implements View.OnClickListener  {
                 break;
             case R.id.offer:
                 startActivity(new Intent(this, OffersImages.class));
+                break;
+            case R.id.ReservationsId:
+                startActivity(new Intent(this, ApproveResrvation.class));
                 break;
 
         }}
